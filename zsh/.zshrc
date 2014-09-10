@@ -1,12 +1,15 @@
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="pak2"
+ZSH_THEME="apak_solarized"
 
 plugins=(
-	git virtualenv knife virtualenvwrapper autojump pip \
-	ssh zsh-syntax-highlighting zsh-history-substring-search
+	git knife virtualenvwrapper autojump pip
+	ssh 
 	vagrant
 	django
 	dircolors
+	virtualenv_solarized
+	zsh-syntax-highlighting 
+	zsh-history-substring-search
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -46,7 +49,7 @@ HISTFILE=~/.zsh_history         # where to store zsh config
 HISTSIZE=10240                   # big history
 SAVEHIST=10240                   # big history
 setopt append_history           # append
-setopt hist_ignore_all_dups     # no duplicate
+#setopt hist_ignore_all_dups     # no duplicate
 #unsetopt hist_ignore_space      # ignore space prefixed commands
 setopt hist_reduce_blanks       # trim blanks
 setopt hist_verify              # show before executing history commands
@@ -55,7 +58,7 @@ setopt share_history            # share hist between sessions
 setopt bang_hist                # !keyword
 
 # http://zsh.sourceforge.net/Intro/intro_13.html
-cdpath=( ~ ~/repos ~/work )
+cdpath=( ~/repos ~/work ~ )
 
 # https://github.com/robbyrussell/oh-my-zsh/pull/1928/files
 alias history='fc -il 1'
@@ -68,3 +71,5 @@ alias ll='ls -alF'
 
 EDITOR=/usr/bin/vim
 alias zshconfig="vim ~/.zshrc"
+alias tmux="tmux -2"
+
