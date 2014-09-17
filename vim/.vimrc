@@ -49,6 +49,18 @@ NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'swaroopch/vim-markdown-preview'
 "NeoBundle 'suan/vim-instant-markdown'
+NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'tpope/vim-endwise'
+"NeoBundle 'einars/translit.vim'
+
+"http://vimpluginloader.sourceforge.net/doc/translit3.rux.html
+"NeoBundle 'vim-scripts/frawor'
+"NeoBundle 'vim-scripts/jsonvim'
+"NeoBundle 'vim-scripts/translit3'
+
+"NeoBundle 't9md/vim-chef'
+"NeoBundle 'dougireton/vim-chef'
+
 
 call neobundle#end()
 
@@ -64,11 +76,7 @@ if ($COLORTERM == 'gnome-terminal') || ($TERM == 'screen-256color')
   set t_Co=256
   set background=dark
   let g:solarized_termcolors=256
-  " let g:solarized_termtrans=1
-  " let g:solarized_visibility="high"
-  " let g:solarized_contrast="high"
   colo solarized
-  " colo wombat256
 endif
 
 if has('gui_running')
@@ -88,7 +96,6 @@ let mapleader=','
 
 " http://ua.opennet.ru/openforum/vsluhforumID15/1390.html
 " http://ru.wikibooks.org/wiki/Vim
-
 set keymap=russian-jcukenwin " use Ctrl+^ to switch to toggle russian
 set iminsert=0 " latin layout by default
 set imsearch=0 " latin layout  while searching by default
@@ -105,7 +112,7 @@ nnoremap <silent> <leader>u :GundoToggle<CR>
 nnoremap - :Switch<cr>
 
 au FileType ruby,eruby set filetype=ruby.eruby.chef
-au FileType vim,sh,javascript,ruby,eruby setl sw=2 sts=2 et ai
+au FileType yaml,vim,sh,zsh,javascript,ruby,eruby setl sw=2 sts=2 et ai
 
 " http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
@@ -136,8 +143,6 @@ autocmd FileType vim,python,sh,ruby,eruby autocmd BufWritePre <buffer> :%s/\s\+$
 " https://github.com/edkolev/tmuxline.vim
 let g:airline#extensions#tmuxline#enabled = 0
 
-" http://superuser.com/questions/701496/no-syntax-highlight-on-md-files
-" autocmd BufRead,BufNew *.md set filetype=markdown
 " https://github.com/tpope/vim-markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd Filetype markdown map <F5> :MarkdownPreview<CR>
@@ -164,20 +169,12 @@ noremap <silent> ,be :CtrlPBuffer<CR>
 
 
 " https://github.com/bling/vim-bufferline/issues/3
-" bufferline config
+" airline and bufferline config
 let g:bufferline_echo = 0
 let g:airline_powerline_fonts = 1
 
-"autocmd VimEnter *
-"\ let &statusline='%{bufferline#refresh_status()}' . bufferline#get_status_string()
 
-"" airline config
-"let g:airline_powerline_fonts = 1
-"if $USER=='root'
-  "let g:airline_theme = 'light'
-"else
-  "let g:airline_theme = 'laederon'
-"endif
-
-
-set shell=zsh\ --login
+" http://stackoverflow.com/questions/11489428/how-to-make-vim-paste-from-and-copy-to-systems-clipboard
+inoremap <C-S-v> <C-o>"+p
+vmap <C-S-v> "+p
+vmap <C-S-c> "+y
