@@ -1,4 +1,4 @@
-ZSH=$HOME/.oh-my-zsh
+ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="apak_solarized"
 
 plugins=(
@@ -51,11 +51,12 @@ SAVEHIST=10240                   # big history
 setopt append_history           # append
 #setopt hist_ignore_all_dups     # no duplicate
 #unsetopt hist_ignore_space      # ignore space prefixed commands
-setopt hist_reduce_blanks       # trim blanks
+#setopt hist_reduce_blanks       # trim blanks
 setopt hist_verify              # show before executing history commands
 setopt inc_append_history       # add commands as they are typed, don't wait until shell exit 
 setopt share_history            # share hist between sessions
 setopt bang_hist                # !keyword
+setopt extended_history 	# save timestamp and runtime information
 
 # http://zsh.sourceforge.net/Intro/intro_13.html
 cdpath=( ~/repos ~/work ~ )
@@ -63,13 +64,23 @@ cdpath=( ~/repos ~/work ~ )
 # https://github.com/robbyrussell/oh-my-zsh/pull/1928/files
 alias history='fc -il 1'
 #http://stackoverflow.com/questions/582726/alternate-way-to-trigger-reverse-i-search-without-pressing-ctrlr-in-bash
-alias hists="history | grep -v '^ *[0-9]* *hists' | grep $@"
-setopt extendedhistory
+function hists() {
+	if [ $# -gt 0 ]; then
+		history | grep -v '^ *[0-9]* *hists' | grep $@ 
+	else
+		history | tail -n30
+	fi
+}
 
 alias gs='git status'
 alias ll='ls -alF'
 
-EDITOR=/usr/bin/vim
 alias zshconfig="vim ~/.zshrc"
 alias tmux="tmux -2"
 
+export EDITOR='vim'
+
+[ -s "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# http://www.teamocil.com/#extras/zsh-autocompletion
+[ -d "$HOME/.teamocil" ] && compctl -g '~/.teamocil/*(:t:r)' teamocil
