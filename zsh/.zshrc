@@ -59,7 +59,7 @@ setopt bang_hist                # !keyword
 setopt extended_history 	# save timestamp and runtime information
 
 # http://zsh.sourceforge.net/Intro/intro_13.html
-cdpath=( ~/repos ~/work ~ )
+cdpath=(~/repos ~/work ~/src ~)
 
 # https://github.com/robbyrussell/oh-my-zsh/pull/1928/files
 alias history='fc -il 1'
