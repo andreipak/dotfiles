@@ -46,6 +46,7 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'swaroopch/vim-markdown-preview'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-commentary'
 
 NeoBundle 't9md/vim-chef', {'name': 't9md-vim-chef'}
 NeoBundle 'dougireton/vim-chef', {'name': 'dougireton-vim-chef'}
@@ -76,7 +77,7 @@ if has('gui_running')
   set guioptions-=T  "remove toolbar
   set guioptions-=r  "remove right-hand scroll bar
   set guioptions-=L  "remove left-hand scroll bar
-  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
+  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 16
   set background=dark
   colo solarized
   set lines=60 columns=119
@@ -111,7 +112,7 @@ let g:ctrlp_clear_cache_on_exit = 0
 let g:is_bash = 1
 let g:agprg = "/usr/bin/ag --column --hidden"
 
-let g:backupdir = '~/.vim/backup'
+let g:backupdir = $HOME . '/.vim/backup'
 let g:tmpdir = '/tmp'
 if !isdirectory(expand(g:backupdir))
   call mkdir(g:backupdir, 'p')
@@ -153,6 +154,7 @@ noremap <silent> ,bp :bp<CR>
 noremap <silent> ,bn :bn<CR>
 noremap <silent> ,bd :bd<CR>
 noremap <silent> ,be :CtrlPBuffer<CR>
+noremap <silent> ,ls :CtrlPBuffer<CR>
 
 
 " https://github.com/bling/vim-bufferline/issues/3
@@ -271,4 +273,44 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 " Tell Neosnippet about the other snippets by 'honza/vim-snippets'
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 " }}}
+
+" http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
+" will change the behavior of the <Enter> key when the popup menu is visible.
+" In that case the Enter key will simply select the highlighted menu item,
+" just as <C-Y> does.
+" inoremap <expr><CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" https://github.com/t9md/vim-chef/blob/master/doc/chef.txt#L185
+au BufNewFile,BufRead */*cookbooks/*  call s:SetupChef()
+function! ChefNerdTreeFind(env)
+    try
+        :NERDTreeFind
+        let scrolloff_orig = &scrolloff
+        let &scrolloff = 15
+        normal! jk
+        wincmd p
+    finally
+        let &scrolloff = scrolloff_orig
+    endtry
+endfunction
+
+let g:chef = {}
+let g:chef.hooks = ['ChefNerdTreeFind']
+
+" remove 'Related' from default, I want to find 'Related' explicitly.
+let g:chef.any_finders = ['Attribute', 'Source', 'Recipe', 'Definition']
+
+function! s:SetupChef()
+    " Mouse:
+    " Left mouse click to GO!
+    nnoremap <buffer> <silent> <2-LeftMouse> :<C-u>ChefFindAny<CR>
+    " Right mouse click to Back!
+    nnoremap <buffer> <silent> <RightMouse> <C-o>
+
+    " Keyboard:
+    nnoremap <buffer> <silent> <M-a>      :<C-u>ChefFindAny<CR>
+    nnoremap <buffer> <silent> <M-f>      :<C-u>ChefFindAnySplit<CR>
+    nnoremap <buffer> <silent> <M-r>      :<C-u>ChefFindRelated<CR>
+endfunction
+
 
