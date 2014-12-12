@@ -10,8 +10,8 @@ call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My Bundles here:
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
+" NeoBundle 'Shougo/neosnippet.vim'
+" NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'flazz/vim-colorschemes'
@@ -32,10 +32,9 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle "MarcWeber/vim-addon-mw-utils"
+NeoBundle 'MarcWeber/vim-addon-mw-utils'
 NeoBundle "tomtom/tlib_vim"
-NeoBundle "garbas/vim-snipmate"
-NeoBundle "honza/vim-snippets"
+" NeoBundle "garbas/vim-snipmate"
 NeoBundle 'vadv/vim-chef'
 NeoBundle 'tpope/vim-sensible'
 NeoBundle 'bling/vim-bufferline'
@@ -43,16 +42,27 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'AndrewRadev/switch.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'tpope/vim-markdown'
-NeoBundle 'swaroopch/vim-markdown-preview'
+" NeoBundle 'swaroopch/vim-markdown-preview'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-commentary'
 
 NeoBundle 't9md/vim-chef', {'name': 't9md-vim-chef'}
 NeoBundle 'dougireton/vim-chef', {'name': 'dougireton-vim-chef'}
+" NeoBundle 'Shougo/neocomplete.vim'
 
-NeoBundle 'Shougo/neocomplete.vim'
+" http://vimcasts.org/blog/2010/12/a-text-object-for-ruby-blocks/
+NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'nelstrom/vim-textobj-rubyblock'
+NeoBundle 'kana/vim-vspec'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'nvie/vim-flake8'
 
+NeoBundle 'sirver/ultisnips'
+NeoBundle 'honza/vim-snippets'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 
 call neobundle#end()
 
@@ -156,129 +166,14 @@ noremap <silent> ,bd :bd<CR>
 noremap <silent> ,be :CtrlPBuffer<CR>
 noremap <silent> ,ls :CtrlPBuffer<CR>
 
-
 " https://github.com/bling/vim-bufferline/issues/3
-" airline and bufferline config
 let g:bufferline_echo = 0
 let g:airline_powerline_fonts = 1
-
 
 " http://stackoverflow.com/questions/11489428/how-to-make-vim-paste-from-and-copy-to-systems-clipboard
 inoremap <C-S-v> <C-o>"+p
 vmap <C-S-v> "+p
 vmap <C-S-c> "+y
-
-" {{{ Shougo/neocomplete.vim
-" Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-" For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
-"inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
-"inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
-" Or set this.
-"let g:neocomplete#enable_cursor_hold_i = 1
-" Or set this.
-"let g:neocomplete#enable_insert_char_pre = 1
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-" }}}
-
-" {{{ Shougo/neosnippet.vim
-
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-
-" Tell Neosnippet about the other snippets by 'honza/vim-snippets'
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-" }}}
-
-" http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
-" will change the behavior of the <Enter> key when the popup menu is visible.
-" In that case the Enter key will simply select the highlighted menu item,
-" just as <C-Y> does.
-" inoremap <expr><CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " https://github.com/t9md/vim-chef/blob/master/doc/chef.txt#L185
 au BufNewFile,BufRead */*cookbooks/*  call s:SetupChef()
@@ -296,21 +191,36 @@ endfunction
 
 let g:chef = {}
 let g:chef.hooks = ['ChefNerdTreeFind']
-
-" remove 'Related' from default, I want to find 'Related' explicitly.
 let g:chef.any_finders = ['Attribute', 'Source', 'Recipe', 'Definition']
 
 function! s:SetupChef()
-    " Mouse:
-    " Left mouse click to GO!
-    nnoremap <buffer> <silent> <2-LeftMouse> :<C-u>ChefFindAny<CR>
-    " Right mouse click to Back!
-    nnoremap <buffer> <silent> <RightMouse> <C-o>
-
-    " Keyboard:
-    nnoremap <buffer> <silent> <M-a>      :<C-u>ChefFindAny<CR>
-    nnoremap <buffer> <silent> <M-f>      :<C-u>ChefFindAnySplit<CR>
-    nnoremap <buffer> <silent> <M-r>      :<C-u>ChefFindRelated<CR>
+    nnoremap ,a :<C-u>ChefFindAny<CR>
+    nnoremap ,r :<C-u>ChefFindRelated<CR>
 endfunction
 
+runtime macros/matchit.vim
+
+nmap ,t :TagbarToggle<CR>
+
+" https://github.com/scrooloose/syntastic/issues/1118
+let g:syntastic_javascript_checkers=['jslint']
+let g:Synstatic_javascript_jslint_conf="~/.jshintrc"
+let g:syntastic_aggregate_errors=1
+let g:syntastic_enable_signs=1
+let g:syntastic_error_symbol='✗'         " Error Symbol
+let g:syntastic_warning_symbol='⚠'       " Warning Symbol
+let g:syntastic_style_error_symbol='✗'   " Style Error Symbol
+let g:syntastic_style_warning_symbol='⚠' " Style Warning Symbol
+
+
+" https://vimeo.com/93364612
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsEditSplit="vertical"
+
+" https://github.com/nathanaelkane/vim-indent-guides/issues/24
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 
