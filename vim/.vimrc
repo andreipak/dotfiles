@@ -63,6 +63,10 @@ NeoBundle 'nvie/vim-flake8'
 NeoBundle 'sirver/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'dougireton/vim-json'
+" NeoBundle 'ConflictMotions'
+
+" TODO: use https://github.com/gmarik/Vundle.vim/blob/v0.10.2/doc/vundle.txt#L372-L396
 
 call neobundle#end()
 
@@ -203,8 +207,8 @@ runtime macros/matchit.vim
 nmap ,t :TagbarToggle<CR>
 
 " https://github.com/scrooloose/syntastic/issues/1118
-let g:syntastic_javascript_checkers=['jslint']
-let g:Synstatic_javascript_jslint_conf="~/.jshintrc"
+" let g:syntastic_javascript_checkers=['jsonlint']
+" let g:Synstatic_javascript_jslint_conf="~/.jshintrc"
 let g:syntastic_aggregate_errors=1
 let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'         " Error Symbol
@@ -224,3 +228,5 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 
+"https://github.com/dougireton/vim-json
+let g:vim_json_syntax_conceal = 0
