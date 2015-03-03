@@ -78,10 +78,9 @@ NeoBundleCheck
 
 "End NeoBundle Scripts-------------------------
 
-if ($COLORTERM == 'gnome-terminal') || ($TERM == 'screen-256color')
-  set t_Co=256
-  set background=dark
+if ($COLORTERM == 'gnome-terminal') || ($TERM == 'screen-256color') || ($TERM == 'xterm-256color')
   let g:solarized_termcolors=256
+  set t_Co=256
   colo solarized
 endif
 
@@ -91,7 +90,11 @@ if has('gui_running')
   set guioptions-=T  "remove toolbar
   set guioptions-=r  "remove right-hand scroll bar
   set guioptions-=L  "remove left-hand scroll bar
-  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 16
+  if has("mac")
+    set guifont=Monaco\ for\ Powerline:h15
+  else
+    set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 16
+  endif
   set background=dark
   colo solarized
   set lines=60 columns=119

@@ -15,6 +15,7 @@ PROMPT_COMMAND="history -a;history -c;history -r;$PROMPT_COMMAND"
   GIT_PS1_SHOWDIRTYSTATE=true
   . /etc/bash_completion.d/git-prompt
 }
+[ -f ~/.git-prompt.sh ] && . ~/.git-prompt.sh
 
 PS1="\$(date +%k:%M:%S)|\[\033[32m\]\u@\h\[\033[00m\]:\[\033[33m\]\w\[\033[31m\]\$(__git_ps1)\[\033[00m\]\\$ "
 

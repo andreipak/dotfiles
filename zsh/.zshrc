@@ -1,31 +1,31 @@
+if [ "$(uname -s)" = "Darwin" ]; then
+  PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+  alias vim='mvim -v'
+else
+  alias open='xdg-open'
+fi
+
 ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="apak_solarized"
 
-plugins=( 
-    git 
-    knife 
-    virtualenvwrapper 
-    pip
-    virtualbox
-    ssh 
-    vagrant
-    django
-    dircolors
-    virtualenv_solarized
+plugins=(
+    git knife virtualenvwrapper pip virtualbox
+    ssh vagrant django dircolors virtualenv_solarized
     zsh-syntax-highlighting 
     zsh-history-substring-search
     autojump
+    brew
 )
 
 source $ZSH/oh-my-zsh.sh
 
-preexec () {
-  #http://stackoverflow.com/questions/13125825/zsh-update-prompt-with-current-time-when-a-command-is-started
-  DATE=`date +"%H:%M:%S %Y-%m-%d"`
-  C=$(($COLUMNS-20))
-  echo -e "\033[1A\033[${C}C \e[1m\e[38;5;240m${DATE}\e[0m"
-}
-
+#preexec () {
+  ##http://stackoverflow.com/questions/13125825/zsh-update-prompt-with-current-time-when-a-command-is-started
+  #DATE=`date +"%H:%M:%S %Y-%m-%d"`
+  #C=$(($COLUMNS-20))
+  #echo -e "\033[1A\033[${C}C \e[1m\e[38;5;240m${DATE}\e[0m"
+#}
+#
 
 # https://github.com/zsh-users/zsh-history-substring-search
 # bind UP and DOWN arrow keys
@@ -81,6 +81,7 @@ alias zshconfig="vim ~/.zshrc"
 alias tmux="tmux -2"
 
 export EDITOR='vim'
+export VISUAL='vim'
 
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 
@@ -93,31 +94,5 @@ export EDITOR='vim'
 [ -d "$HOME/.teamocil" ] && compctl -g '~/.teamocil/*(:t:r)' teamocil
 
 # http://stackoverflow.com/questions/24005133/ubuntu-14-04-apt-aptitude-autocompletion-with-oh-my-zsh-not-working
-setopt completealiases
+# setopt completealiases
 
-# set PATH so it includes user's private bin if it exists
-
-# https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/fasd/fasd.plugin.zsh
-#[ $commands[fasd] ] && {
-  #fasd_cache="$HOME/.fasd-init-cache"
-
-  #if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
-    #fasd --init auto >| "$fasd_cache"
-  #fi
-  #source "$fasd_cache"
-  #unset fasd_cache
-  #alias v='f -e vim'
-  #alias o='a -e open'
-
-  ## https://github.com/clvv/fasd/issues/10
-  #alias a='fasd -a'        # any
-  #alias s='fasd -si'       # show / search / select
-  #alias d='fasd -d'        # directory
-  #alias ds='fasd -sid'     # interactive directory selection
-  #alias f='fasd -f'        # file
-  #alias fs='fasd -sif'     # interactive file selection
-  #alias j='fasd_cd -d'     # cd, same functionality as j in autojump
-  #alias js='fasd_cd -d -i' # cd with interactive selection
-#}
-
-alias open=xdg-open
