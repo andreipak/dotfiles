@@ -2,11 +2,6 @@ cdpath=(~/repos ~/work ~/src ~)
 
 setopt print_exit_value         # print return value if non-zero
 
-alias gs='git status'
-alias ll='ls -alF'
-alias zshconfig="vim ~/.zshrc"
-alias tmux="tmux -2"
-
 export EDITOR='vim'
 export VISUAL='vim'
 
@@ -17,6 +12,11 @@ else
   alias open='xdg-open'
 fi
 
+alias gs='git status'
+alias ll='ls -alF'
+alias zshconfig="vim ~/.zsh/.zshrc"
+alias tmux="tmux -2"
+
 source ~/.zsh/antigen.zsh
 
 antigen use oh-my-zsh
@@ -25,6 +25,7 @@ antigen bundle git
 antigen bundle pip
 antigen bundle virtualenvwrapper
 antigen bundle brew
+antigen bundle django
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
@@ -43,3 +44,8 @@ antigen apply
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
+
+PATH=$HOME/bin:$PATH
+
+export LC_ALL="en_US.UTF-8"
+export TIME_STYLE=long-iso

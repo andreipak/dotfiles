@@ -13,60 +13,66 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " NeoBundle 'Shougo/neosnippet.vim'
 " NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'kien/ctrlp.vim'
+" NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vimproc.vim', { 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
+" NeoBundle 'Shougo/vimshell'
+" NeoBundle 'Shougo/vimproc.vim', { 'build' : {
+      " \     'windows' : 'tools\\update-dll-mingw',
+      " \     'mac' : 'make -f make_mac.mak',
+      " \     'unix' : 'make -f make_unix.mak',
+      " \    },
+      " \ }
 
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'vimwiki/vimwiki'
+" NeoBundle 'vimwiki/vimwiki'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'rking/ag.vim'
+" NeoBundle 'rking/ag.vim'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'sjl/gundo.vim'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'MarcWeber/vim-addon-mw-utils'
-NeoBundle "tomtom/tlib_vim"
+" NeoBundle 'vim-ruby/vim-ruby'
+" NeoBundle 'MarcWeber/vim-addon-mw-utils'
+" NeoBundle "tomtom/tlib_vim"
 " NeoBundle "garbas/vim-snipmate"
-NeoBundle 'vadv/vim-chef'
+" NeoBundle 'vadv/vim-chef'
 NeoBundle 'tpope/vim-sensible'
 NeoBundle 'bling/vim-bufferline'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'AndrewRadev/switch.vim'
 NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'tpope/vim-markdown'
+" NeoBundle 'tpope/vim-markdown'
 " NeoBundle 'swaroopch/vim-markdown-preview'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-commentary'
 
-NeoBundle 't9md/vim-chef', {'name': 't9md-vim-chef'}
-NeoBundle 'dougireton/vim-chef', {'name': 'dougireton-vim-chef'}
+" NeoBundle 't9md/vim-chef', {'name': 't9md-vim-chef'}
+" NeoBundle 'dougireton/vim-chef', {'name': 'dougireton-vim-chef'}
 " NeoBundle 'Shougo/neocomplete.vim'
 
 " http://vimcasts.org/blog/2010/12/a-text-object-for-ruby-blocks/
-NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'nelstrom/vim-textobj-rubyblock'
-NeoBundle 'kana/vim-vspec'
+" NeoBundle 'kana/vim-textobj-user'
+" NeoBundle 'nelstrom/vim-textobj-rubyblock'
+" NeoBundle 'kana/vim-vspec'
 NeoBundle 'majutsushi/tagbar'
-NeoBundle 'Valloric/YouCompleteMe'
+" NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'nvie/vim-flake8'
+" NeoBundle 'nvie/vim-flake8'
 
 NeoBundle 'sirver/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'dougireton/vim-json'
+" NeoBundle 'dougireton/vim-json'
+NeoBundle 'andreipak/RunView'
+NeoBundle 'ehamberg/vim-cute-python'
 " NeoBundle 'ConflictMotions'
 
 " TODO: use https://github.com/gmarik/Vundle.vim/blob/v0.10.2/doc/vundle.txt#L372-L396
+"
+"
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'ivalkeen/vim-ctrlp-tjump'
 
 call neobundle#end()
 
@@ -233,3 +239,6 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 
 "https://github.com/dougireton/vim-json
 let g:vim_json_syntax_conceal = 0
+
+let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
+  " ,  'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
