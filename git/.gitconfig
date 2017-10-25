@@ -1,0 +1,11 @@
+[user]
+	name = andreipak
+	email = andreipak@gmail.com
+[core]
+	autocrlf = false
+	editor = mvim -v
+[alias]
+	hist = !"git --no-pager log --pretty=format:'%h %ad | %s%C(bold)%d%C(reset) [%an]' --graph --date=short"
+	type = cat-file -t
+	dump = cat-file -p
+	history = "log --graph --all --abbrev-commit --decorate --date=short --format=format:'%C(bold blue)%h%C(reset) %ad %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
