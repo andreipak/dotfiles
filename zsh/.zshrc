@@ -1,31 +1,29 @@
 if [ "$(uname -s)" = "Darwin" ]; then
   PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-  alias vim='mvim -v'
+  MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+  builtin type -p mvim > /dev/null && alias vim='mvim -v'
 else
   alias open='xdg-open'
 fi
 
 ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="apak_solarized"
+ZSH_THEME="solarized"
 
 plugins=(
-    git knife virtualenvwrapper pip virtualbox
-    ssh vagrant django dircolors virtualenv_solarized
+    git 
+    pip 
+    ssh
+    dircolors 
+    virtualenv_solarized
     zsh-syntax-highlighting 
     zsh-history-substring-search
-    autojump
     brew
+    z
+    docker
+    extract
 )
 
 source $ZSH/oh-my-zsh.sh
-
-#preexec () {
-  ##http://stackoverflow.com/questions/13125825/zsh-update-prompt-with-current-time-when-a-command-is-started
-  #DATE=`date +"%H:%M:%S %Y-%m-%d"`
-  #C=$(($COLUMNS-20))
-  #echo -e "\033[1A\033[${C}C \e[1m\e[38;5;240m${DATE}\e[0m"
-#}
-#
 
 # https://github.com/zsh-users/zsh-history-substring-search
 # bind UP and DOWN arrow keys
@@ -75,8 +73,12 @@ function hists() {
 }
 
 alias gs='git status'
+alias gh='git hist'
+alias go='git checkout '
+alias gt='gittower .'
+alias ls='ls --color'
 alias ll='ls -alF'
-
+alias sz="source $0;echo $0 was reloaded"
 alias zshconfig="vim ~/.zshrc"
 alias tmux="tmux -2"
 
@@ -94,5 +96,4 @@ export VISUAL='vim'
 [ -d "$HOME/.teamocil" ] && compctl -g '~/.teamocil/*(:t:r)' teamocil
 
 # http://stackoverflow.com/questions/24005133/ubuntu-14-04-apt-aptitude-autocompletion-with-oh-my-zsh-not-working
-# setopt completealiases
-
+setopt completealiases
