@@ -1,0 +1,1 @@
+test -e ~/.profile && source ~/.profile

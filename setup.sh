@@ -2,7 +2,7 @@
 
 # curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
 
-for rc_file in vim/.vimrc bash/.bashrc tmux/.tmux.conf zsh/.zshrc; do
+for rc_file in vim/.vimrc bash/.bashrc tmux/.tmux.conf zsh/* .profile; do
   dotfile=${rc_file##*/} # get the part after the last slash
   [ -e ~/$dotfile ] && \
     mv ~/$dotfile ~/$dotfile.backup.`date +%F`.$RANDOM
