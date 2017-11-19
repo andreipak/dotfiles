@@ -99,3 +99,5 @@ export VISUAL='vim'
 
 # http://stackoverflow.com/questions/24005133/ubuntu-14-04-apt-aptitude-autocompletion-with-oh-my-zsh-not-working
 setopt completealiases
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -8,6 +8,7 @@ Plug 'tpope/vim-commentary'
 Plug 'valloric/youcompleteme', {'do': './install.py'}
 Plug 'janko-m/vim-test'
 Plug 'python-mode/python-mode'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 call plug#end()
 
 
