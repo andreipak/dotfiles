@@ -21,6 +21,7 @@ plugins=(
     z
     docker
     extract
+    virtualenvwrapper
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -81,6 +82,7 @@ alias ll='ls -alF'
 alias sz="source $0;echo $0 was reloaded"
 alias zshconfig="vim ~/.zshrc"
 alias tmux="tmux -2"
+alias sudo="sudo -H"
 
 export EDITOR='vim'
 export VISUAL='vim'
