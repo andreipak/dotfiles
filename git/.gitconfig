@@ -1,6 +1,6 @@
 [user]
 	name = andreipak
-	email = andreipak@gmail.com
+	email = andrei.pak@gmail.com
 [core]
 	autocrlf = false
 	editor = mvim -v
