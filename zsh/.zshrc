@@ -22,6 +22,7 @@ plugins=(
     docker
     extract
     virtualenvwrapper
+    zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
